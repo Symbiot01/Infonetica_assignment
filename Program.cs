@@ -20,8 +20,6 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WorkflowService v1"));
 
-// Health check / welcome endpoint
-//app.MapGet("/", () => Results.Ok("WorkflowService is running"));
 
 // Create a new workflow definition
 app.MapPost("/workflows", (WfSvc svc, WorkflowDefinition def) =>
@@ -46,9 +44,6 @@ app.MapGet("/workflows/{id}", (WfSvc svc, string id) =>
 })
 .WithName("GetWorkflowDefinition");
 
-// List all workflow definitions
-//app.MapGet("/workflows", (WfSvc svc) => Results.Ok(svc.ListDefinitions()))
-//.WithName("ListWorkflowDefinitions");
 
 // Start a new workflow instance
 app.MapPost("/workflows/{id}/instances", (WfSvc svc, string id) =>
